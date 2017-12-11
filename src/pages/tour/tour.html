@@ -1,0 +1,104 @@
+<ion-content class="body">
+  <span style="float:right;">
+  <button ion-button clear icon-right style="color:yellow" (click)="skipTour()" >Pular Tour
+     <ion-icon name="arrow-forward"></ion-icon>
+  </button>
+</span>
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <ion-grid>
+        <ion-row class="wrapper">
+          <ion-col col-12 class="header">
+            <img src="assets/images/slide1-header.png" style="width: 60%;height: auto; margin-top:0;"/>
+          </ion-col>
+          <ion-col col-12 class="content">
+            <h3>Há muitos anos presenciamos inúmeras lojas de varejo fechando as portas, dentre os principais motivos são:</h3>
+            <div class="list">
+              <p><ion-icon name="home" style="color:yellow"></ion-icon> Custo com aluguel;</p>
+              <p><ion-icon name="stats" style="color:yellow"></ion-icon> Custo com mão de obra e excesso de encargos trabalhistas;</p>
+              <p><ion-icon name="logo-usd" style="color:yellow"></ion-icon> Impostos e taxas abusivas;</p>
+              <p><ion-icon name="thumbs-down" style="color:yellow"></ion-icon> Dificuldade de encontrar produtos de qualidade;</p>
+              <p><ion-icon name="nuclear" style="color:yellow"></ion-icon> Má gestão de estoque.</p>
+            </div>
+            <img src="assets/images/logo.png" style="width:150px;"/>
+          </ion-col>
+          <ion-col col-12 class="btnContainer">
+            <button ion-button outline style="float:right;" (click)="goToSlideAfter()">
+              <p>Próximo <ion-icon name="fastforward"></ion-icon></p>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row class="wrapper">
+          <ion-col col-12 class="header">
+            <img src="assets/images/slide2-header.png" style="width: 60%;height: auto; margin-top:0;"/>
+          </ion-col>
+          <ion-col col-12 class="content">
+            <h3>O Mobile Stock é uma solução para todas as ineficiências de estoque para lojas varefistas.</h3>
+            <div class="list">
+              <p><ion-icon name="arrow-dropright-circle" style="color:yellow"></ion-icon> Tenha um estoque próprio de nossas empresas;</p>
+              <p><ion-icon name="arrow-dropright-circle" style="color:yellow"></ion-icon> Faça devolução de itens caso não venda;</p>
+              <p><ion-icon name="arrow-dropright-circle" style="color:yellow"></ion-icon> Pague à vista ou parcelado no cartão;</p>
+              <p><ion-icon name="arrow-dropright-circle" style="color:yellow"></ion-icon> Maior agilidade para realizar seus pedidos;</p>
+              <p><ion-icon name="arrow-dropright-circle" style="color:yellow"></ion-icon> Grande quantidade de fabricantes.</p>
+            </div>
+            <img src="assets/images/logo.png" style="width:150px;"/>
+          </ion-col>
+          <ion-col col-12 class="btnContainer">
+            <ion-col col-6>
+              <button ion-button outline style="float:left;" (click)="goToSlideBefore()">
+                <p><ion-icon name="rewind"></ion-icon> Anterior</p>
+              </button>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button outline style="float:right;" (click)="goToSlideAfter()">
+                <p>Próximo <ion-icon name="fastforward"></ion-icon></p>
+              </button>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row class="wrapper">
+          <ion-col col-12 class="header">
+            <img src="assets/images/slide3-header.png" style="width: 60%;height: auto; margin-top:0; line-height: 22px;"/>
+          </ion-col>
+          <ion-col col-12 class="content">
+            <div class="list">
+              <p style="font-size:14px">
+                <span>1</span> Faça seu cadastro;
+              </p>
+              <p style="font-size:14px">
+                <span>2</span> Adicione produtos a sua lista de compras para separarmos seu estoque;
+              </p>
+              <p style="font-size:14px">
+                <span>3</span> Finalize o pedido e faça o pagamento;
+              </p>
+              <p style="font-size:14px">
+                <span>4</span> Receba os produtos em seu endereço;
+              </p>
+            </div>
+            <img src="assets/images/logo.png" style="width: 150px;"/>
+          </ion-col>
+          <ion-col col-12 class="btnContainer">
+            <ion-col col-6>
+              <button ion-button outline style="float:left;" (click)="goToSlideBefore()">
+                <p><ion-icon name="rewind"></ion-icon> Anterior</p>
+              </button>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button outline style="float:right;" (click)="skipTour()">
+                <p>Fechar</p>
+              </button>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

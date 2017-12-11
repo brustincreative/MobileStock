@@ -1,0 +1,204 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Enviar lista de pedido</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <ion-item-divider color="primary">Detalhes de pagamento</ion-item-divider>
+      <ion-item style="font-size:15px;">
+        Quantidade: {{totalQty}}
+      </ion-item>
+      <ion-item style="font-size:15px;">
+        Subtotal: R$ {{subtotal}}
+      </ion-item>
+      <ion-item style="font-size:15px;">
+        <ion-label>Método de pagamento</ion-label>
+        <ion-select [(ngModel)]="paymentMethod" (ionChange)="getDiscount()">
+          <ion-option *ngFor="let p of paymentMethods" value="{{p.method_id}}"> {{p.method_title}} </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item style="font-size:15px;">
+        Total: R$ {{total}}
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-item-divider color="primary">Informações pessoas</ion-item-divider>
+      <ion-item>
+        <ion-label>Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.billing_address.first_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sobrenome</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.billing_address.last_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input readonly type="email" [(ngModel)]="newOrder.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Usuário</ion-label>
+        <ion-input readonly type="text" [(ngModel)]="newOrder.username"></ion-input>
+      </ion-item>
+
+      <ion-item-divider color="primary">Detalhes de cobrança</ion-item-divider>
+
+      <ion-item>
+        <ion-label>Endereço linha 1</ion-label>
+        <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.billing_address.address_1"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Endereço linha 2</ion-label>
+        <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.billing_address.address_2"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>País</ion-label>
+        <ion-select [(ngModel)]="newOrder.billing_address.country">
+          <ion-option value="Brasil" selected="true">Brasil</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estado</ion-label>
+        <ion-select [(ngModel)]="newOrder.billing_address.state">
+          <ion-option value="Acre">Acre</ion-option>
+          <ion-option value="Alagoas">Alagoas</ion-option>
+          <ion-option value="Amapá">Amapá</ion-option>
+          <ion-option value="Amazonas">Amazonas</ion-option>
+          <ion-option value="Bahia">Bahia</ion-option>
+          <ion-option value="Bahia">Bahia</ion-option>
+          <ion-option value="Distrito Federal">Distrito Federal</ion-option>
+          <ion-option value="Espírito Santo">Espírito Santo</ion-option>
+          <ion-option value="Goiás">Goiás</ion-option>
+          <ion-option value="Maranhão">Maranhão</ion-option>
+          <ion-option value="Mato Grosso">Mato Grosso</ion-option>
+          <ion-option value="Mato Grosso do Sul">Mato Grosso do Sul</ion-option>
+          <ion-option value="Minas Gerais">Minas Gerais</ion-option>
+          <ion-option value="Pará">Pará</ion-option>
+          <ion-option value="Paraíba">Paraíba</ion-option>
+          <ion-option value="Paraná">Paraná</ion-option>
+          <ion-option value="Pernambuco">Pernambuco</ion-option>
+          <ion-option value="Piauí">Piauí</ion-option>
+          <ion-option value="Rio de Janeiro">Rio de Janeiro</ion-option>
+          <ion-option value="Rio Grande do Norte">Rio Grande do Norte</ion-option>
+          <ion-option value="Rio Grande do Sul">Rio Grande do Sul</ion-option>
+          <ion-option value="Rondônia">Rondônia</ion-option>
+          <ion-option value="Roraima">Roraima</ion-option>
+          <ion-option value="Santa Catarina">Santa Catarina</ion-option>
+          <ion-option value="São Paulo">São Paulo</ion-option>
+          <ion-option value="Sergipe">Sergipe</ion-option>
+          <ion-option value="Tocantins">Tocantins</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Cidade</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.billing_address.city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>CEP</ion-label>
+        <ion-input type="number" clearInput [(ngModel)]="newOrder.billing_address.postcode"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefone</ion-label>
+        <ion-input type="tel" clearInput [(ngModel)]="newOrder.billing_address.phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Utilizar detalhes de cobrança? </ion-label>
+        <ion-checkbox (ionChange)="setBillingToShipping()"></ion-checkbox>
+      </ion-item>
+      <ion-item-divider color="primary" *ngIf="!billing_shipping_same">Detalhes de entrega</ion-item-divider>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.shipping_address.first_name"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Sobrenome</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.shipping_address.last_name"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Endereço linha 1</ion-label>
+        <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.shipping_address.address_1"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Endereço linha 2</ion-label>
+        <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.shipping_address.address_2"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>País</ion-label>
+        <ion-select [(ngModel)]="newOrder.shipping_address.country">
+          <ion-option value="Brasil" selected="true">Brasil</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Estado</ion-label>
+        <ion-select [(ngModel)]="newOrder.shipping_address.state">
+          <ion-option value="Acre">Acre</ion-option>
+          <ion-option value="Alagoas">Alagoas</ion-option>
+          <ion-option value="Amapá">Amapá</ion-option>
+          <ion-option value="Amazonas">Amazonas</ion-option>
+          <ion-option value="Bahia">Bahia</ion-option>
+          <ion-option value="Bahia">Bahia</ion-option>
+          <ion-option value="Distrito Federal">Distrito Federal</ion-option>
+          <ion-option value="Espírito Santo">Espírito Santo</ion-option>
+          <ion-option value="Goiás">Goiás</ion-option>
+          <ion-option value="Maranhão">Maranhão</ion-option>
+          <ion-option value="Mato Grosso">Mato Grosso</ion-option>
+          <ion-option value="Mato Grosso do Sul">Mato Grosso do Sul</ion-option>
+          <ion-option value="Minas Gerais">Minas Gerais</ion-option>
+          <ion-option value="Pará">Pará</ion-option>
+          <ion-option value="Paraíba">Paraíba</ion-option>
+          <ion-option value="Paraná">Paraná</ion-option>
+          <ion-option value="Pernambuco">Pernambuco</ion-option>
+          <ion-option value="Piauí">Piauí</ion-option>
+          <ion-option value="Rio de Janeiro">Rio de Janeiro</ion-option>
+          <ion-option value="Rio Grande do Norte">Rio Grande do Norte</ion-option>
+          <ion-option value="Rio Grande do Sul">Rio Grande do Sul</ion-option>
+          <ion-option value="Rondônia">Rondônia</ion-option>
+          <ion-option value="Roraima">Roraima</ion-option>
+          <ion-option value="Santa Catarina">Santa Catarina</ion-option>
+          <ion-option value="São Paulo">São Paulo</ion-option>
+          <ion-option value="Sergipe">Sergipe</ion-option>
+          <ion-option value="Tocantins">Tocantins</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Cidade</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.shipping_address.city"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>CEP</ion-label>
+        <ion-input type="number" clearInput [(ngModel)]="newOrder.shipping_address.postcode"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Telefone</ion-label>
+        <ion-input type="tel" clearInput [(ngModel)]="newOrder.shipping_address.phone"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button block color="primary" (click)="placeOrder()">Enviar pedido</button>
+</ion-footer>

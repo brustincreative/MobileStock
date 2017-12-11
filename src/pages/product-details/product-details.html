@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{product.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="body">
+  <ion-fab right top edge (click)="openCart()">
+    <button ion-fab color="light"><ion-icon name="cart" style="color:black;"></ion-icon></button>
+  </ion-fab>
+  <ion-card>
+    <ion-slides autoplay="3000">
+      <ion-slide *ngFor="let image of product.images">
+        <img [src]="image.src" />
+      </ion-slide>
+    </ion-slides>
+    <ion-card-content>
+        <ion-card-title>
+          {{ product.title }} &nbsp;
+          <ion-chip *ngFor="let cat of product.categories" style="margin-left:5px;">
+            <ion-label color="primary"> {{ cat }}</ion-label>
+          </ion-chip>
+        </ion-card-title>
+        <div class="descricao" [innerHTML] = "product.description"></div>
+      </ion-card-content>
+  </ion-card>
+  <form #form="ngForm">
+    <ion-card *ngFor="let variation of list; let i = index">
+      <ion-card-content no-padding>
+        <ion-list>
+          <ion-item style="font-size:18px;">
+            <p>Numeração: {{variation.attributes["0"].option}}</p>
+            <p>Estoque Disponível: {{variation.stock_quantity}} </p>
+            <p *ngIf="showPrice">Valor à vista: R${{variation.price}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" placeholder="Quantidade" name="{{variation.id}}" [(ngModel)]="variation.quantity"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+  <ion-card *ngIf="product.attributes.length > 0">
+    <ion-card-content>
+      <ion-card-title>
+        Caracteristicas
+      </ion-card-title>
+      <ion-grid>
+        <ion-row *ngFor = "let att of product.attributes">
+          <ion-col col-5>
+            {{ att.name }}
+          </ion-col>
+          <ion-col col-7>
+            <span *ngFor = "let option of att.options">{{ option }} </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Exibir valor unitário? </ion-label>
+            <ion-checkbox (ionChange)="hidePrice(hide)" [(ngModel)] = "hide" value="0"></ion-checkbox>
+          </ion-item>
+          <button ion-button icon-left block color="default" (click) ="addToCart(form)">
+            <ion-icon name="basket"></ion-icon>Adicionar à lista
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

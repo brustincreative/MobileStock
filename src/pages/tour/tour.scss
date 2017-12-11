@@ -1,0 +1,58 @@
+page-tour {
+  .body{
+    background-color: #00A9E6;
+  }
+  .wrapper{
+
+  }
+  .header{
+
+  }
+  .header img{
+    width: 60%;
+    height: auto;
+    margin-top: 15%;
+  }
+  .content{
+
+  }
+  .content p{
+    font-size: 12px;
+    text-align: left;
+    color: white;
+  }
+
+  .content h3{
+    font-size: 14px;
+    color: white;
+    text-align: center;
+  }
+
+  .content .list{
+    padding-left: 42px;
+  }
+
+  .content .list span{
+    border: 2px solid yellow;
+    color: yellow;
+    border-radius: 10px;
+    padding: 1% 2% 1% 2%;
+    font-weight: 2px;
+    font-size: 13px;
+  }
+
+  .footer{
+
+  }
+  .footer img{
+    width:50%;
+    height:auto;
+  }
+
+  .btnContainer p{
+    color:yellow;
+  }
+  .btnContainer button{
+    border-style: none;
+  }
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button color="danger" ion-button icon menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Pedidos</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-list>
+    <ion-item *ngFor="let order of orders" text-wrap (click) = "openOrderPage(order)">
+      <h2>Pedido: {{order.id}}</h2>
+      <p>
+        <span><b>Data:</b> {{order.created_at}}</span><br/>
+        <span><b>Status:</b> {{order.status}} </span><br/>
+        <span><b>Total:</b> R$ {{order.total}} de {{order.total_line_items_quantity}} itens</span>
+      </p>
+      <button ion-button icon clear item-right>
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite) = "loadMoreOrders($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

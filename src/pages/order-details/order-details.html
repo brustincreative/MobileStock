@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pedido: {{order.id}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider color="default">Detalhes do pedido</ion-item-divider>
+    <ion-list>
+      <ion-item *ngFor="let item of order.line_items">
+        <h2>{{item.name}}</h2>
+        <p><b>Quantidade:</b> {{item.quantity}}</p>
+        <p><b>Valor:</b> R$ {{item.total}}</p>
+      </ion-item>
+      <ion-item><b>Subtotal:</b> R$ {{order.subtotal}}</ion-item>
+      <ion-item><b>Desconto:</b> R$ {{order.total_discount}}</ion-item>
+      <ion-item><b>Método de pagamento:</b> {{order.payment_details.method_title}}</ion-item>
+      <ion-item><b>Total:</b> R$ {{order.total}}</ion-item>
+    </ion-list>
+  </ion-item-group>
+  <ion-item-group>
+      <ion-item-divider color="light">Dados do cliente</ion-item-divider>
+      <ion-item><b>E-mail:</b> {{order.customer.email}}</ion-item>
+      <ion-item><b>Telefone:</b> {{order.customer.billing_address.phone}}</ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">Endereço de cobrança</ion-item-divider>
+      <ion-item><i>{{order.billing_address.address_1}} {{order.billing_address.address_2}}<br/>
+                   {{order.billing_address.city}}/ {{order.billing_address.state}}<br/>
+                   CEP: {{order.billing_address.postcode}}
+                </i></ion-item>
+
+      <ion-item-divider color="light">Endereço de entrega</ion-item-divider>
+      <ion-item><i>{{order.shipping_address.address_1}} {{order.shipping_address.address_2}}<br/>
+                   {{order.shipping_address.city}}/ {{order.shipping_address.state}}<br/>
+                   CEP: {{order.shipping_address.postcode}}
+                </i></ion-item>
+    </ion-item-group>
+</ion-content>

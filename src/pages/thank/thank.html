@@ -1,0 +1,23 @@
+<ion-content class="body">
+  <ion-grid class="gridIntro">
+    <ion-row>
+        <img class="imgIntro" src="assets/images/logoWithBackground.png" />
+    </ion-row>
+    <ion-row>
+      <ion-col col-lg-12 offset-lg-12>
+        <p class="paragraph">{{message}}</p>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="primary" outline block (click) = "closeModal()">Sair</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

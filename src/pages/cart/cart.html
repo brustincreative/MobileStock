@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Lista de produtos</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>Detalhes da lista de produtos</ion-col>
+      </ion-row>
+      <ion-row [hidden] = "!showEmptyCartMessage">
+        <ion-col>Nenhum produto adicionado à lista!</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let item of array; let i = index" (click) = "openProduct(item['0'].mainProduct)">
+      <ion-thumbnail item-left>
+        <img [src] = "item['0'].featured_src" style="width: 60px !important; height:60px !important;" />
+      </ion-thumbnail>
+      <h2>{{item['0'].title}}</h2>
+      <h3 style="font-size:15px;">{{item['0'].name}} - {{item['0'].option}}</h3>
+      <p>{{item['0'].qty}} x R${{item['0'].price}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-card>
+      <ion-grid>
+        <ion-row [hidden] = "!showDiscountMessage">
+          <ion-col><p style="font-size: 10px;" color="danger">{{discount}}<p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <b style="font-size:12px;">Quantidade</b>
+          </ion-col>
+          <ion-col col-8 style="text-align: right;">
+            {{ sumQty }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-7>
+            <b style="font-size:12px;">Total à vista</b>
+          </ion-col>
+          <ion-col col-5 style="text-align: right;">
+            R$ {{ total }}
+          </ion-col>
+        </ion-row>
+        <ion-row [hidden] = "!showDiscountMessage">
+          <ion-col col-7>
+            <b style="font-size:12px;">Total com desconto</b>
+          </ion-col>
+          <ion-col col-5 style="text-align: right;">
+            R$ {{ percent }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="primary" outline block (click) = "closeModal()">Continuar comprando</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="primary" block (click) = "checkout()">Prosseguir com pedido</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

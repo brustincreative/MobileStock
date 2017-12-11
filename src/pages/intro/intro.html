@@ -1,0 +1,26 @@
+<ion-content class="body">
+  <ion-grid class="gridIntro">
+    <ion-row>
+        <img class="imgIntro" src="assets/images/logoWithBackground.png" />
+    </ion-row>
+    <ion-row>
+      <ion-col col-lg-12 offset-lg-12>
+        <p class="paragraph">Bem vindo a Mobile Stock,<br/> seu novo estoque virtual.</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-lg-12 offset-lg-12>
+        <button ion-button large outline icon-start class="btnIntro" (click)="openPage('login')" style="padding-left:40px; padding-right:40px;">
+          <ion-icon name="person"></ion-icon>Fazer Login
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-lg-12 offset-lg-12>
+        <button ion-button large outline icon-start class="btnIntro" (click)="openPage('tour')">
+          <ion-icon name="cog"></ion-icon>Como Funciona
+        </button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+</ion-content>
