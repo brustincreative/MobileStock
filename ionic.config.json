@@ -1,6 +1,6 @@
 {
   "name": "MobileStock",
-  "app_id": "",
+  "app_id": "a0244965",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
