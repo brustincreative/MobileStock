@@ -4826,6 +4826,10 @@ textarea:-ms-input-placeholder {
   padding-left: 2px;
 }
 
+textarea::-ms-input-placeholder {
+  padding-left: 2px;
+}
+
 textarea::placeholder {
   padding-left: 2px;
 }
@@ -14155,8 +14159,8 @@ input.text-input:-webkit-autofill {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  -webkit-box-orient: inherit;
+  -webkit-box-direction: inherit;
   -webkit-flex-direction: inherit;
   -ms-flex-direction: inherit;
   flex-direction: inherit;
@@ -14181,8 +14185,8 @@ input.text-input:-webkit-autofill {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  -webkit-box-orient: inherit;
+  -webkit-box-direction: inherit;
   -webkit-flex-direction: inherit;
   -ms-flex-direction: inherit;
   flex-direction: inherit;
