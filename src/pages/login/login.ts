@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { MenuPage } from '../menu/menu';
-import { IntroPage } from '../intro/intro';
-import { TourPage } from '../tour/tour';
+import { MenuPage } from './../menu/menu';
+import { IntroPage } from './../intro/intro';
+import { TourPage } from './../tour/tour';
 
 
 @Component({
