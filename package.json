@@ -27,6 +27,7 @@
     "@ionic/app-scripts": "^3.1.5",
     "@ionic/storage": "2.0.1",
     "angular-money-mask": "^1.0.0",
+    "bcrypt-pbkdf": "^1.0.1",
     "card.io.cordova.mobilesdk": "^2.1.0",
     "com.paypal.cordova.mobilesdk": "^3.5.0",
     "cordova": "^7.1.0",
