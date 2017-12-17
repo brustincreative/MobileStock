@@ -55,7 +55,10 @@
     "woocommerce-api": "1.4.2",
     "wordpress-rest-api": "^0.8.0",
     "wpapi": "^1.1.2",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "cordova-ios": "4.5.4",
+    "cordova-plugin-console": "^1.0.5",
+    "cordova-browser": "~5.0.1"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.5"
@@ -72,7 +75,12 @@
       "cordova-plugin-inappbrowser": {},
       "onesignal-cordova-plugin": {},
       "cordova-plugin-ionic-webview": {}
-    }
+    },
+    "platforms": [
+      "android",
+      "ios",
+      "browser"
+    ]
   },
   "repository": {
     "type": "git",
