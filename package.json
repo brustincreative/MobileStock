@@ -32,7 +32,6 @@
     "com.paypal.cordova.mobilesdk": "^3.5.0",
     "cordova": "^7.1.0",
     "cordova-android": "^6.2.3",
-    "cordova-ios": "4.5.4",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-inappbrowser": "^1.7.1",
     "cordova-plugin-ionic-webview": "^1.1.11",
