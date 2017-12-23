@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Slides } from 'ionic-angular';
-import { IntroPage } from '../intro/intro';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 
+@IonicPage()
 @Component({
   selector: 'page-tour',
   templateUrl: 'tour.html',
@@ -32,7 +32,7 @@ export class TourPage {
   }
 
   skipTour(){
-    this.navCtrl.push(IntroPage);
+    this.navCtrl.push('IntroPage');
   }
 
 }

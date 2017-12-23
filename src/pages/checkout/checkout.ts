@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { ThankPage } from '../thank/thank';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Http } from '@angular/http';
 
+@IonicPage()
 @Component({
   selector: 'page-checkout',
   templateUrl: 'checkout.html',
@@ -180,7 +180,7 @@ export class CheckoutPage {
               handler:()=>{
                 this.http.delete("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.userInfo.id).subscribe((data)=>{
                   let res = data.json();
-                  this.navCtrl.push(ThankPage);
+                  this.navCtrl.push('ThankPage');
                   if(res.error){
                     this.toastCtrl.create({
                       message: response.error,

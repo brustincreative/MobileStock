@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, ModalController, LoadingController } from 'ionic-angular';
-import { ProductDetailsPage } from '../product-details/product-details';
+import { IonicPage, NavController, ToastController, ModalController, LoadingController } from 'ionic-angular';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
-import { SearchPage } from '../search/search';
-import { CartPage } from '../cart/cart';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -69,16 +67,16 @@ export class HomePage {
   }
 
   openProductPage(product){
-    this.navCtrl.push(ProductDetailsPage, { "product": product });
+    this.navCtrl.push('ProductDetailsPage', { "product": product });
   }
 
   openCart(){
-    this.modalCtrl.create(CartPage).present();
+    this.modalCtrl.create('CartPage').present();
   }
 
   onSearch(event){
     if(this.search.length > 0){
-      this.navCtrl.push(SearchPage, {"search": this.search});
+      this.navCtrl.push('SearchPage', {"search": this.search});
     }
   }
 

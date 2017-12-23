@@ -1,15 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { SignupPage } from '../signup/signup';
-import { LoginPage } from '../login/login';
-import { CartPage } from '../cart/cart';
-import { OrdersPage } from '../orders/orders';
-import { IntroPage } from '../intro/intro';
-import { ProductsByCategoryPage } from '../products-by-category/products-by-category';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 
+@IonicPage()
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html',
@@ -24,7 +18,7 @@ export class MenuPage {
   user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController, private woocommerce: WooCommerceProvider) {
-    this.homePage = HomePage
+    this.homePage = 'HomePage'
     this.categories = [];
     this.user = {};
 
@@ -58,25 +52,25 @@ export class MenuPage {
   }
 
   OpenCategoryPage(category) {
-    this.childNavCrtl.setRoot(ProductsByCategoryPage, {"category": category});
+    this.childNavCrtl.setRoot('ProductsByCategoryPage', {"category": category});
   }
 
   openPage(pageName:string){
     if(pageName == "signup"){
-      this.navCtrl.push(SignupPage);
+      this.navCtrl.push('SignupPage');
     }else if(pageName == "login"){
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.push('LoginPage');
     }else if(pageName == "cart"){
-      let modal = this.modalCtrl.create(CartPage);
+      let modal = this.modalCtrl.create('CartPage');
       modal.present();
     }else if(pageName == "logout"){
       this.storage.remove("userLoginInfo").then(()=>{
         this.user = {};
         this.loggedin = false;
-        this.navCtrl.setRoot(IntroPage);
+        this.navCtrl.setRoot('IntroPage');
       });
     }else if(pageName == "orders"){
-      this.navCtrl.push(OrdersPage);
+      this.navCtrl.push('OrdersPage');
     }
   }
 }

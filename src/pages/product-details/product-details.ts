@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { CartPage } from '../cart/cart';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
-import { HomePage } from '../home/home';
 
+@IonicPage()
 @Component({
   selector: 'page-product-details',
   templateUrl: 'product-details.html',
@@ -53,7 +52,7 @@ export class ProductDetailsPage {
 
   ionViewWillLeave() {
     if(this.goodTogo){
-      this.navCtrl.setRoot(HomePage); //mantem page sempre refreshed.
+      this.navCtrl.setRoot('HomePage'); //mantem page sempre refreshed.
     }
   }
 
@@ -161,7 +160,7 @@ export class ProductDetailsPage {
               added = 1;
             }
           });
-        }      
+        }
         this.http.post("http://mobilestock.com.br/wp-json/app/v1/cart", data)
         .subscribe((res)=>{
           let response = res.json();
@@ -186,7 +185,7 @@ export class ProductDetailsPage {
   }
 
   openCart(){
-    this.modalCtrl.create(CartPage).present();
+    this.modalCtrl.create('CartPage').present();
   }
 
 }

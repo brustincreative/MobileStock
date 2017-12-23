@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage,NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { MenuPage } from './../menu/menu';
-import { IntroPage } from './../intro/intro';
-import { TourPage } from './../tour/tour';
 
 
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -28,7 +26,7 @@ export class LoginPage {
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
           this.user = userLoginInfo.user;
-          this.navCtrl.setRoot(MenuPage);
+          this.navCtrl.setRoot('MenuPage');
         }else{
           this.user = {};
         }
@@ -61,7 +59,7 @@ export class LoginPage {
             buttons:[{
               text:"OK",
               handler:()=> {
-                this.navCtrl.setRoot(MenuPage);
+                this.navCtrl.setRoot('MenuPage');
               }
             }]
           }).present();
@@ -77,9 +75,9 @@ export class LoginPage {
   }
   redirection(send){
     if(send == "back"){
-      this.navCtrl.push(IntroPage);
+      this.navCtrl.push('IntroPage');
     }else if(send == "tour"){
-      this.navCtrl.push(TourPage);
+      this.navCtrl.push('TourPage');
     }
   }
 

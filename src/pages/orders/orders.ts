@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController  } from 'ionic-angular';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Storage } from '@ionic/storage';
-import { OrderDetailsPage } from '../order-details/order-details';
 
+@IonicPage()
 @Component({
   selector: 'page-orders',
   templateUrl: 'orders.html',
@@ -65,7 +65,7 @@ export class OrdersPage {
 
 
   openOrderPage(order){
-    this.navCtrl.push(OrderDetailsPage, { "order": order });
+    this.navCtrl.push('OrderDetailsPage', { "order": order });
   }
 
 }

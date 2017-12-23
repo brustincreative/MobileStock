@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 
+@IonicPage()
 @Component({
   selector: 'page-order-details',
   templateUrl: 'order-details.html',
@@ -16,9 +17,4 @@ export class OrderDetailsPage {
     this.WooCommerce = this.woocommerce.initialize();
 
   }
-
-  ionViewDidLoad() {
-    
-  }
-
 }

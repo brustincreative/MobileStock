@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { CheckoutPage } from '../checkout/checkout';
-import { ProductDetailsPage } from '../product-details/product-details';
-import { LoginPage } from '../login/login';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Http } from '@angular/http';
 
-
+@IonicPage()
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html',
@@ -106,9 +103,9 @@ export class CartPage {
     if(this.cartItems.length > 0){
       this.storage.get("userLoginInfo").then((data)=>{
         if(data != null){
-          this.navCtrl.push(CheckoutPage);
+          this.navCtrl.push('CheckoutPage');
         }else{
-          this.navCtrl.push(LoginPage, {next: CheckoutPage});
+          this.navCtrl.push('LoginPage', {next: 'CheckoutPage'});
         }
       });
     }else{
@@ -120,7 +117,7 @@ export class CartPage {
   }
 
   openProduct(item){
-    this.navCtrl.push(ProductDetailsPage, { "product": item });
+    this.navCtrl.push('ProductDetailsPage', { "product": item });
   }
 
   ionViewDidLeave(){

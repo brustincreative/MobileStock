@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
-import { ProductDetailsPage } from '../product-details/product-details';
 
+@IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
@@ -43,7 +43,7 @@ export class SearchPage {
   }
 
   openProductPage(product){
-    this.navCtrl.push(ProductDetailsPage, { "product": product });
+    this.navCtrl.push('ProductDetailsPage', { "product": product });
   }
 
 }
