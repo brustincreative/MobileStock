@@ -85,12 +85,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diogoferraz/HybridWooIonic.git"
+    "url": "git+https://github.com/brustincreative/MobileStock.git" 
   },
   "author": "Diogo Ferraz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diogoferraz/HybridWooIonic/issues"
+    "url": "https://github.com/brustincreative/MobileStock/issues"
   },
-  "homepage": "https://github.com/diogoferraz/HybridWooIonic#readme"
+  "homepage": "https://github.com/brustincreative/MobileStock#readme"
 }
