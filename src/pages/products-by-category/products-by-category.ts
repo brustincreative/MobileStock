@@ -20,15 +20,17 @@ export class ProductsByCategoryPage {
 
     this.WooCommerce = this.woocommerce.initialize();
 
-    this.loadingCtrl.create({
-      content: 'Carregando...',
-      duration: 4000
-    }).present();
-
+    let loading;
+    loading = this.loadingCtrl.create({
+      content: 'Carregando informações do produto...'
+    });
+    loading.present();
     this.WooCommerce.getAsync("products?filter[category]="+ this.category.slug).then((data)=>{
       //console.log(JSON.parse(data.body));
       this.products = JSON.parse(data.body).products;
+      loading.dismiss();
     },(err)=>{
+      loading.dismiss();
       console.log(err)
     });
 

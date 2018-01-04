@@ -52,7 +52,7 @@ export class ProductDetailsPage {
 
   ionViewWillLeave() {
     if(this.goodTogo){
-      this.navCtrl.setRoot('HomePage'); //mantem page sempre refreshed.
+      this.navCtrl.setRoot('HomePage');
     }
   }
 
