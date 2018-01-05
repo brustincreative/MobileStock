@@ -50,7 +50,7 @@
     "ionicons": "3.0.0",
     "lodash": "^4.17.4",
     "node-pre-gyp": "^0.6.39",
-    "onesignal-cordova-plugin": "^2.2.5",
+    "onesignal-cordova-plugin": "2.1.0",
     "rxjs": "5.4.0",
     "sshpk": "^1.13.1",
     "sw-toolbox": "3.6.0",
