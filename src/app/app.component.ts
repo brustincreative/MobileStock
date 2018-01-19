@@ -23,21 +23,22 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      if (this.platform.is('cordova')) {
+        this.oneSignal.startInit('0aa965b2-ee29-4d40-8bfc-e55abaee1597', '848609388484');
+ 
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+ 
+        this.oneSignal.handleNotificationReceived().subscribe(() => {
+         // do something when notification is received
+        });
+ 
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          // do something when a notification is opened
+        });
+ 
+        this.oneSignal.endInit();
+      }
     });
-     if (this.platform.is('cordova')) {
-       this.oneSignal.startInit('0aa965b2-ee29-4d40-8bfc-e55abaee1597', '848609388484');
-
-       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-
-       this.oneSignal.handleNotificationReceived().subscribe(() => {
-        // do something when notification is received
-       });
-
-       this.oneSignal.handleNotificationOpened().subscribe(() => {
-         // do something when a notification is opened
-       });
-
-       this.oneSignal.endInit();
-     }
+     
   }
 }

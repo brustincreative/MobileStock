@@ -8,7 +8,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpModule } from '@angular/http';
-import { PayPal } from '@ionic-native/paypal';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
