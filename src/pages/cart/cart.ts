@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Http } from '@angular/http';
 
+
 @IonicPage()
 @Component({
   selector: 'page-cart',
@@ -40,12 +41,11 @@ export class CartPage {
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
           this.user = userLoginInfo.user;
-          this.http.get("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.user.id).subscribe((data)=>{
-
+          this.http.get("https://mobilestock.com.br/wp-json/app/v1/cart?user="+this.user.id).subscribe((data)=>{
             this.cartItems = data.json();
             if(this.cartItems.length > 0){
               loading.dismiss();
-              this.cartItems.forEach((item, index) =>{
+              this.cartItems.forEach((item, index) => {
                 let product = JSON.parse(item.product);
                 let price = product.price;
                 let qty = Number(item.qty)
@@ -59,12 +59,10 @@ export class CartPage {
                   "featured_src": item.featured_src,
                   "mainProduct": JSON.parse(item.mainProduct),
                 }])
-
                 this.total += price * qty;
                 this.sumQty += qty;
               });
               this.total = parseFloat(this.total).toFixed(2);
-              // discount calc
               if( this.sumQty >= 120 && this.sumQty <= 179 )
               {
                 this.value = this.total * 0.01;
@@ -91,6 +89,10 @@ export class CartPage {
               loading.dismiss();
               this.showEmptyCartMessage = true;
             }
+          }, (err)=>{
+            loading.dismiss();
+            console.log(JSON.stringify(err))
+            this.showEmptyCartMessage = true;
           });
         }
       });
@@ -119,10 +121,5 @@ export class CartPage {
   openProduct(item){
     this.navCtrl.push('ProductDetailsPage', { "product": item });
   }
-
-  ionViewDidLeave(){
-    //this.viewCtrl.dismiss();
-  }
-
 
 }

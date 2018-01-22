@@ -30,7 +30,6 @@ import { WooCommerceProvider } from '../providers/woocommerce/woocommerce';
   providers: [
     StatusBar,
     SplashScreen,
-    PayPal,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WooCommerceProvider,
     OneSignal
