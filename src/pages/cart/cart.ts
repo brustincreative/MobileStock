@@ -41,7 +41,7 @@ export class CartPage {
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
           this.user = userLoginInfo.user;
-          this.http.get("https://mobilestock.com.br/wp-json/app/v1/cart?user="+this.user.id).subscribe((data)=>{
+          this.http.get("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.user.id).subscribe((data)=>{
             this.cartItems = data.json();
             if(this.cartItems.length > 0){
               loading.dismiss();

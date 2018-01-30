@@ -22,7 +22,7 @@ webpackEmptyAsyncContext.id = 182;
 
 var map = {
 	"../pages/cart/cart.module": [
-		595,
+		581,
 		13
 	],
 	"../pages/checkout/checkout.module": [
@@ -34,23 +34,23 @@ var map = {
 		11
 	],
 	"../pages/intro/intro.module": [
-		588,
+		584,
 		10
 	],
 	"../pages/login/login.module": [
-		584,
+		585,
 		9
 	],
 	"../pages/menu/menu.module": [
-		585,
+		586,
 		8
 	],
 	"../pages/order-details/order-details.module": [
-		586,
+		587,
 		7
 	],
 	"../pages/orders/orders.module": [
-		587,
+		588,
 		6
 	],
 	"../pages/product-details/product-details.module": [
@@ -58,23 +58,23 @@ var map = {
 		5
 	],
 	"../pages/products-by-category/products-by-category.module": [
-		594,
+		590,
 		4
 	],
 	"../pages/search/search.module": [
-		590,
+		591,
 		3
 	],
 	"../pages/signup/signup.module": [
-		591,
+		592,
 		2
 	],
 	"../pages/thank/thank.module": [
-		592,
+		593,
 		1
 	],
 	"../pages/tour/tour.module": [
-		593,
+		594,
 		0
 	]
 };
@@ -117,8 +117,8 @@ var WooCommerceProvider = (function () {
     function WooCommerceProvider() {
         this.WooCommerce = __WEBPACK_IMPORTED_MODULE_1_woocommerce_api__({
             url: "http://mobilestock.com.br/",
-            consumerKey: "ck_e33d2196255b5ada7bf637d785afbfca5be0b78d ",
-            consumerSecret: "cs_34cc36be2864d9cfe66d1471db5d0cdeb50ccc7e"
+            consumerKey: "ck_0c5504551fd6ddb44786710cac963379962e8a26 ",
+            consumerSecret: "cs_38efe8ad33e9f51542ee87b9740d8626fbec25f4"
         });
     }
     WooCommerceProvider.prototype.initialize = function () {
@@ -161,17 +161,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_http__ = __webpack_require__(581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_woocommerce_woocommerce__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_woocommerce_woocommerce__ = __webpack_require__(327);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -196,23 +194,23 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                 links: [
+                    { loadChildren: '../pages/cart/cart.module#CartPageModule', name: 'CartPage', segment: 'cart', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/intro/intro.module#IntroPageModule', name: 'IntroPage', segment: 'intro', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/order-details/order-details.module#OrderDetailsPageModule', name: 'OrderDetailsPage', segment: 'order-details', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/intro/intro.module#IntroPageModule', name: 'IntroPage', segment: 'intro', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/product-details/product-details.module#ProductDetailsPageModule', name: 'ProductDetailsPage', segment: 'product-details', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/products-by-category/products-by-category.module#ProductsByCategoryPageModule', name: 'ProductsByCategoryPage', segment: 'products-by-category', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/thank/thank.module#SearchPageModule', name: 'ThankPage', segment: 'thank', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/tour/tour.module#TourPageModule', name: 'TourPage', segment: 'tour', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/products-by-category/products-by-category.module#ProductsByCategoryPageModule', name: 'ProductsByCategoryPage', segment: 'products-by-category', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/cart/cart.module#CartPageModule', name: 'CartPage', segment: 'cart', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/tour/tour.module#TourPageModule', name: 'TourPage', segment: 'tour', priority: 'low', defaultHistory: [] }
                 ]
             }),
-            __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
@@ -223,9 +221,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_10__providers_woocommerce_woocommerce__["a" /* WooCommerceProvider */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_http__["a" /* HTTP */]
+            __WEBPACK_IMPORTED_MODULE_9__providers_woocommerce_woocommerce__["a" /* WooCommerceProvider */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */]
         ]
     })
 ], AppModule);

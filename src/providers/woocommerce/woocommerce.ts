@@ -9,8 +9,8 @@ export class WooCommerceProvider {
   constructor() {
     this.WooCommerce = WC({
       url:"http://mobilestock.com.br/",
-      consumerKey: "ck_e33d2196255b5ada7bf637d785afbfca5be0b78d ",
-      consumerSecret: "cs_34cc36be2864d9cfe66d1471db5d0cdeb50ccc7e"
+      consumerKey: "ck_0c5504551fd6ddb44786710cac963379962e8a26 ",
+      consumerSecret: "cs_38efe8ad33e9f51542ee87b9740d8626fbec25f4"
     });
   }
 
