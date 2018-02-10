@@ -64,6 +64,9 @@ export class LoginPage {
             }]
           }).present();
         });
+      }, (err)=>{
+        this.loading.dismiss();
+        console.log(err);
       });
     }else{
       this.loading.dismiss();
