@@ -129,7 +129,7 @@ export class ProductDetailsPage {
         }
       }
 
-        this.http.get("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.user.id).subscribe((res)=>{
+        this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=get&user="+this.user.id).subscribe((res)=>{
         let data = res.json();
         if(data == null || data.length == 0){
           data = [];
@@ -161,7 +161,7 @@ export class ProductDetailsPage {
             }
           });
         }
-        this.http.post("http://mobilestock.com.br/wp-json/app/v1/cart", data)
+        this.http.post("http://mobilestock-com-br.umbler.net/api/cart.php?action=post", data)
         .subscribe((res)=>{
           let response = res.json();
           if(response.error){

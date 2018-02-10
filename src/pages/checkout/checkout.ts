@@ -46,7 +46,7 @@ export class CheckoutPage {
         this.userInfo = userLoginInfo.user;
         let email = userLoginInfo.user.email;
         if(userLoginInfo != null){
-          this.http.get("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.userInfo.id).subscribe((data)=>{
+          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=get&user="+this.userInfo.id).subscribe((data)=>{
             let cart = data.json();
             cart.forEach((element, index) =>{
               let product = JSON.parse(element.product);
@@ -149,7 +149,7 @@ export class CheckoutPage {
     };
 
     if(paymentData.method_id == "bacs" || paymentData.method_id == "cheque"){
-      this.http.get("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.userInfo.id).subscribe((res)=>{
+      this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=get&user="+this.userInfo.id).subscribe((res)=>{
         let cart = res.json();
         let perProductValue = this.total/this.totalQty
 
@@ -178,7 +178,7 @@ export class CheckoutPage {
             buttons: [{
               text:"OK",
               handler:()=>{
-                this.http.delete("http://mobilestock.com.br/wp-json/app/v1/cart?user="+this.userInfo.id).subscribe((data)=>{
+                this.http.delete("http://mobilestock-com-br.umbler.net/api/cart.php?action=delete&user="+this.userInfo.id).subscribe((data)=>{
                   let res = data.json();
                   this.navCtrl.push('ThankPage');
                   if(res.error){
