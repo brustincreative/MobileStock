@@ -1,38 +1,60 @@
-<ion-content>
+<ion-header style="padding-top:2%;">
   <span style="float:left;">
-    <button ion-button clear icon-right color="blueLogo" (click)="redirection('back')"><ion-icon name="arrow-back"></ion-icon>
-       Voltar
+    <button ion-button clear icon-right color="blueLogo" (click)="redirection('back')">
+      <ion-icon name="arrow-back"></ion-icon>
+      Voltar
     </button>
   </span>
   <span style="float:right;">
     <button ion-button clear icon-right color="blueLogo" (click)="redirection('tour')">Ir para tour
-       <ion-icon name="arrow-forward"></ion-icon>
+      <ion-icon name="arrow-forward"></ion-icon>
     </button>
   </span>
-  <ion-card style="margin:0px; border:none; width:100%;">
-    <img src="assets/images/login-header.png" style="width:60%;padding:7%; margin-left: 20%;"/>
-    <ion-item>
-      <ion-label> <ion-icon name="mail"></ion-icon> </ion-label>
-      <ion-input type="text" [(ngModel)] = "username" placeholder="Endereço de email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label> <ion-icon name="lock"></ion-icon> </ion-label>
-      <ion-input type="password" [(ngModel)]="password" placeholder="Senha"></ion-input>
-    </ion-item>
-  </ion-card>
-  <button ion-button full color="blueLogo" (click)="login()" class="btnLogin">Entrar</button>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <!--ion-card style="margin:0px; border:none; width:100%;"-->
+        <ion-row style="margin:0px; border:none; width:100%;">
+          <img src="assets/images/login-header.png" style="width:auto;height:350px;margin-left: 8%;" />
+        </ion-row>
+        <ion-row>
+          
+            <ion-item>
+              <ion-label>
+                <ion-icon name="mail"></ion-icon>
+              </ion-label>
+              <ion-input type="text" [(ngModel)]="username" placeholder="Endereço de email"></ion-input>
+            </ion-item>
+          
+        </ion-row>
+        <ion-row>
+          
+            <ion-item>
+              <ion-label>
+                <ion-icon name="lock"></ion-icon>
+              </ion-label>
+              <ion-input type="password" [(ngModel)]="password" placeholder="Senha"></ion-input>
+            </ion-item>
+          
+        </ion-row>
+      <!--/ion-card-->
+    </ion-row>
+    <button ion-button full color="blueLogo" (click)="login()" class="btnLogin">Entrar</button>
+  </ion-grid>
 </ion-content>
 <ion-footer>
   <div class="box" color="blueLogo">
     <ion-grid>
       <ion-row>
         <ion-col col-lg-12>
-          <button class="btnSignup" onclick="window.open('http://www.mobilestock.com.br', '_system', 'location=yes'); return false;" ion-button full color="yellow">Cadastre-se</button>
+          <button class="btnSignup" onclick="window.open('http://www.mobilestock.com.br', '_system', 'location=yes'); return false;"
+            ion-button full color="yellow">Cadastre-se</button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-lg-12>
-          <img src="assets/images/logo.png"/>
+          <img src="assets/images/logo.png" />
         </ion-col>
       </ion-row>
     </ion-grid>
