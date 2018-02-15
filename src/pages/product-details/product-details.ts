@@ -100,16 +100,18 @@ export class ProductDetailsPage {
                 }).present();
                 return;
               }
-              if(stockAvaiable){
+              if(stockAvaiable){                
                 this.cartItems.push({
-                  "product": JSON.stringify(this.variations[v]),
+                  "productPrice": this.variations[v].price,
                   "productID": this.variations[v].id,
-                  "mainProduct": JSON.stringify(this.product),
+                  "mainProductID": this.product.id,
                   "title": this.product.title,
                   "qty": Number(items.value[item]),
                   "amount": parseFloat(this.variations[v].price) * items.value[item],
                   "featured_src":this.product.featured_src,
-                  "iduser": this.user.id
+                  "iduser": this.user.id,
+                  "productAttName": this.variations[v].attributes[0].name, 
+                  "productAttOption": this.variations[v].attributes[0].option
                 });
                 this.variations[v].stock_quantity = this.variations[v].stock_quantity - items.value[item];
                 let d = {
@@ -129,7 +131,7 @@ export class ProductDetailsPage {
         }
       }
 
-        this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=get&user="+this.user.id).subscribe((res)=>{
+        this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.user.id).subscribe((res)=>{
         let data = res.json();
         if(data == null || data.length == 0){
           data = [];
@@ -138,19 +140,15 @@ export class ProductDetailsPage {
           this.cartItems.forEach((item, index) =>{
             let qty = 0;
             let added = 0;
-            let dataProd;
-            let product;
 
             data.forEach((element, i) =>{
-              product = JSON.parse(element.product);
-
-              if(product.id === item.productID){
+              let id = Number(element.productID) 
+              if(id === item.productID){                
                 console.log("Produto já existe na lista de pedidos");
 
                 qty = Number(data[i].qty);
-                data[i].qty = qty + Number(item.qty);
-                dataProd = JSON.parse(data[i].product);
-                data[i].amount = parseFloat(data[i].amount) + (parseFloat(dataProd.price)*(item.qty));
+                data[i].qty = qty + Number(item.qty);                
+                data[i].amount = parseFloat(data[i].amount) + (parseFloat(data[i].productPrice)*(item.qty));
                 added = 1;
               }
             })
@@ -161,7 +159,7 @@ export class ProductDetailsPage {
             }
           });
         }
-        this.http.post("http://mobilestock-com-br.umbler.net/api/cart.php?action=post", data)
+        this.http.post("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.user.id, data)
         .subscribe((res)=>{
           let response = res.json();
           if(response.error){

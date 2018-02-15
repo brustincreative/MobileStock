@@ -41,25 +41,24 @@ export class CartPage {
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
           this.user = userLoginInfo.user;
-          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=get&user="+this.user.id).subscribe((data)=>{
+          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.user.id).subscribe((data)=>{
             this.cartItems = data.json();
             if(this.cartItems.length > 0){
               loading.dismiss();
               this.cartItems.forEach((item, index) => {
-                let product = JSON.parse(item.product);
-                let price = product.price;
+                let price = parseFloat(item.productPrice).toFixed(2);
                 let qty = Number(item.qty)
 
                 this.array.push([{
                   "title": item.title,
-                  "name": product.attributes["0"].name,
-                  "option": product.attributes["0"].option,
-                  "price": product.price,
+                  "name": item.productAttName,
+                  "option": item.productAttOption,
+                  "price": price,
                   "qty": Number(item.qty),
                   "featured_src": item.featured_src,
-                  "mainProduct": JSON.parse(item.mainProduct),
+                  "mainProductID": item.mainProductID,
                 }])
-                this.total += price * qty;
+                this.total += item.productPrice * qty;
                 this.sumQty += qty;
               });
               this.total = parseFloat(this.total).toFixed(2);
@@ -119,7 +118,11 @@ export class CartPage {
   }
 
   openProduct(item){
-    this.navCtrl.push('ProductDetailsPage', { "product": item });
+    var d = [];
+    this.WooCommerce.getAsync('products/'+item).then((data) => {
+      d = JSON.parse(data.body)
+      this.navCtrl.push('ProductDetailsPage', d);       
+    });
+     
   }
-
 }
