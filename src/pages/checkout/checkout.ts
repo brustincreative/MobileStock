@@ -169,8 +169,9 @@ export class CheckoutPage {
 
         this.WooCommerce.postAsync("orders", orderData).then((data)=>{
           let response = JSON.parse(data.body).order;
-          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=1&user="+this.userInfo.id).subscribe((data)=>{
-            let res = data.json();
+          console.log(response)
+          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=1&user="+this.userInfo.id).subscribe((d)=>{
+            let res = d.json();
             this.loading.dismiss();
 
             if(!res.error){
@@ -192,8 +193,10 @@ export class CheckoutPage {
               return;
             }
           }, (err)=>{
-            console.log(err);
+            console.log(1, err);
           });                    
+        }, (err)=>{
+          console.log(2, err)
         });
       })
     }else{

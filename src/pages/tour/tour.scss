@@ -2,19 +2,16 @@ page-tour {
   .body{
     background-color: #00A9E6;
   }
-  .wrapper{
-
-  }
-  .header{
-
+  .slide-zoom {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 31%;
   }
   .header img{
     width: 60%;
     height: auto;
     margin-top: 15%;
-  }
-  .content{
-
   }
   .content p{
     font-size: 12px;
@@ -39,10 +36,6 @@ page-tour {
     padding: 1% 2% 1% 2%;
     font-weight: 2px;
     font-size: 13px;
-  }
-
-  .footer{
-
   }
   .footer img{
     width:50%;
