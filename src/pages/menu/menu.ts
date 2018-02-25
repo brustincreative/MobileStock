@@ -69,8 +69,9 @@ export class MenuPage {
         this.loggedin = false;
         this.navCtrl.setRoot('IntroPage');
       });
-    }else if(pageName == "orders"){
-      this.navCtrl.push('OrdersPage');
+    }else if(pageName == "order"){
+      let modal = this.modalCtrl.create('OrderPage');
+      modal.present();
     }
   }
 }

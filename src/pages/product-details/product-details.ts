@@ -162,13 +162,8 @@ export class ProductDetailsPage {
         this.http.post("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.user.id, data)
         .subscribe((res)=>{
           let response = res.json();
-          if(response.error){
-            this.toastCtrl.create({
-              message: response.error,
-              duration: 3000,
-            }).present();
-            return;
-          }else{
+
+          if(response.lastInsertId !== ""){
             this.toastCtrl.create({
               message: "Lista atualizada",
               duration: 3000,

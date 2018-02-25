@@ -26,15 +26,10 @@
         <h2>Acessar conta</h2>
         <p>Utilize o email e cnpj da empresa </p>
       </ion-item>
-      <ion-item *ngIf = "loggedin" menuClose (click)="openPage('signup')">
+      <ion-item *ngIf = "loggedin" menuClose >
         <ion-icon name="contact" item-left large></ion-icon>
         <h2>{{(this.user.firstname == '') ? this.user.username : this.user.firstname || "" }}</h2>
         <p>Seja bem vindo!</p>
-      </ion-item>
-      <ion-item (click)="openPage('orders')" *ngIf = "loggedin" menuClose>
-        <ion-icon name="list" item-left large></ion-icon>
-        <h2>Pedidos</h2>
-        <p>Veja os pedidos realizados</p>
       </ion-item>
       <ion-item onclick="window.open('http://www.mobilestock.com.br', '_system', 'location=yes'); return false;" menuClose>
         <ion-icon name="arrow-round-forward" item-left large></ion-icon>
@@ -46,6 +41,11 @@
         <h2>Lista de produtos</h2>
         <p>Veja sua lista de produtos</p>
       </ion-item>
+      <!--ion-item (click)="openPage('order')" *ngIf = "loggedin" menuClose>
+        <ion-icon name="list" item-left large></ion-icon>
+        <h2>Pedidos</h2>
+        <p>Veja seus pedidos</p>
+      </ion-item-->
       <ion-item (click)="openPage('logout')" *ngIf = "loggedin" menuClose>
         <ion-icon name="log-out" item-left large></ion-icon>
         <h2>Sair</h2>

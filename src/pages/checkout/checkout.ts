@@ -79,6 +79,8 @@ export class CheckoutPage {
               this.subtotal = parseFloat(this.subtotal).toFixed(2);
               this.couponItems.push({"id":176, "code":"desconto de 2,5%", "amount":this.discount});
             }
+          }, (err)=>{
+            console.log(err);
           });
           this.WooCommerce.getAsync("customers/email/"+email).then((data) =>{
             this.loading.dismiss();
@@ -118,6 +120,8 @@ export class CheckoutPage {
     let orderItems: any[] = [];
     let data: any = {};
     let paymentData: any = {};
+    let billing: any = this.newOrder.billing_address;
+    console.log(billing);
 
     this.loading = this.loadingCtrl.create({
       content: 'Carregando...'
@@ -135,20 +139,16 @@ export class CheckoutPage {
       }
     });
     data = {
-      payment_details: {
-        method_id: paymentData.method_id,
-        method_title: paymentData.method_title,
-        paid: true
-      },
-      billing_address: this.newOrder.billing_address,
-      shipping_address: this.newOrder.shipping_address,
-      customer_id: this.userInfo.id || '',
-      line_items: orderItems,
-      coupon_lines:this.couponItems
+      method_title: paymentData.method_title,
+      billing_address: billing.address_1,
+      email: billing.email,
+      name: this.userInfo.id || '',
+      line_items: orderItems
     };
+    console.log(data);
 
     if(paymentData.method_id == "bacs" || paymentData.method_id == "cheque"){
-      this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.userInfo.id).subscribe((res)=>{
+      this.http.get('http://mobilestock-com-br.umbler.net/api/cart.php?user='+this.userInfo.id).subscribe((res)=>{
         let cart = res.json();
         let perProductValue = this.total/this.totalQty
 
@@ -167,36 +167,13 @@ export class CheckoutPage {
         let orderData: any = {};
         orderData.order = data;
 
-        this.WooCommerce.postAsync("orders", orderData).then((data)=>{
-          let response = JSON.parse(data.body).order;
-          console.log(response)
-          this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?action=1&user="+this.userInfo.id).subscribe((d)=>{
-            let res = d.json();
-            this.loading.dismiss();
-
-            if(!res.error){
-              this.alertCtrl.create({
-                title:"Ordem de pagamento enviada com sucesso",
-                message:"O número de identificação da sua ordem é: " + response.order_number,
-                buttons: [{
-                  text:"OK",
-                  handler:()=>{
-                    this.navCtrl.push('ThankPage');
-                  }
-                }]
-              }).present();
-            } else {
-              this.toastCtrl.create({
-                message: response.error,
-                duration: 3000,
-              }).present();
-              return;
-            }
-          }, (err)=>{
-            console.log(1, err);
-          });                    
-        }, (err)=>{
-          console.log(2, err)
+        this.http.post('http://mobilestock-com-br.umbler.net/api/checkout.php?user='+this.userInfo.id, data).subscribe((res)=>{
+          console.log(res);
+          this.loading.dismiss();
+          this.navCtrl.push('ThankPage');
+        },(err)=>{
+          console.log(err)
+          this.loading.dismiss()
         });
       })
     }else{

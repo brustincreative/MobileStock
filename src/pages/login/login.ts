@@ -66,7 +66,10 @@ export class LoginPage {
         });
       }, (err)=>{
         this.loading.dismiss();
-        console.log(err);
+        this.toastCtrl.create({
+          message: err,
+          duration: 3000,
+        }).present();
       });
     }else{
       this.loading.dismiss();

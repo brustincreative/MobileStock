@@ -16,6 +16,7 @@ export class ThankPage {
 
   closeModal(){
     this.navCtrl.popAll();
+    
   }
 
 }
