@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.brusin.mobilestock" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.brustin.mobilestock" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MobileStock</name>
     <description>Mobile Stock - Lista de Pedidos Online.</description>
     <author email="brustin@brustin.com.br" href="http://brustin.com.br">Brustin</author>

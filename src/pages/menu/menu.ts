@@ -52,7 +52,7 @@ export class MenuPage {
   }
 
   OpenCategoryPage(category) {
-    this.childNavCrtl.setRoot('ProductsByCategoryPage', {"category": category});
+    this.navCtrl.push('ProductsByCategoryPage', {"category": category});
   }
 
   openPage(pageName:string){

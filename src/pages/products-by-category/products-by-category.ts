@@ -66,4 +66,8 @@ export class ProductsByCategoryPage {
     this.navCtrl.push('ProductDetailsPage', { "product": product });
   }
 
+  back(){
+    this.navCtrl.push('HomePage');
+  }
+
 }
