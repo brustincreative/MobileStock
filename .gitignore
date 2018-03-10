@@ -7,7 +7,6 @@
 *.tmp
 *.tmp.*
 log.txt
-*.jks
 
 npm-debug.log*
 
