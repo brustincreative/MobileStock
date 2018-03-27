@@ -13,8 +13,6 @@ export class CheckoutPage {
   newOrder:any;
   paymentMethods: any[];
   paymentMethod: any;
-  billing_shipping_same:boolean;
-  WooCommerce: any;
   userInfo: any;
   totalQty: number = 0;
   subtotal:any = 0.00;//valor total da transação sem acresimo.
@@ -24,18 +22,13 @@ export class CheckoutPage {
   value:any = 0.00;
   loading:any;
 
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public toastCtrl: ToastController,private woocommerce: WooCommerceProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
     this.newOrder = {};
-    this.newOrder.billing_address = {};
-    this.newOrder.shipping_address = {};
-    this.billing_shipping_same = false;
 
     this.paymentMethods = [
       {method_id:"bacs", method_title:"Depósito"},
       {method_id:"cheque", method_title:"A prazo"},
     ];
-
-    this.WooCommerce = this.woocommerce.initialize();
 
     this.loading = this.loadingCtrl.create({
       content: 'Carregando...'
@@ -43,9 +36,9 @@ export class CheckoutPage {
     this.loading.present();
     this.storage.ready().then(()=>{
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
-        this.userInfo = userLoginInfo.user;
-        let email = userLoginInfo.user.email;
-        if(userLoginInfo != null){
+        this.userInfo = userLoginInfo.user[0];
+        let email = this.userInfo.email;
+        if(this.userInfo != null){
           this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.userInfo.id).subscribe((data)=>{
             let cart = data.json();
             cart.forEach((element, index) =>{
@@ -82,10 +75,6 @@ export class CheckoutPage {
           }, (err)=>{
             console.log(err);
           });
-          this.WooCommerce.getAsync("customers/email/"+email).then((data) =>{
-            this.loading.dismiss();
-            this.newOrder = JSON.parse(data.body).customer;
-          });
         }
       });
     });
@@ -109,19 +98,10 @@ export class CheckoutPage {
     }
   }
 
-  setBillingToShipping(){
-    this.billing_shipping_same = !this.billing_shipping_same;
-    if(this.billing_shipping_same){
-      this.newOrder.shipping_address = this.newOrder.billing_address;
-    }
-  }
-
   placeOrder(){
     let orderItems: any[] = [];
     let data: any = {};
     let paymentData: any = {};
-    let billing: any = this.newOrder.billing_address;
-    console.log(billing);
 
     this.loading = this.loadingCtrl.create({
       content: 'Carregando...'
@@ -140,8 +120,8 @@ export class CheckoutPage {
     });
     data = {
       method_title: paymentData.method_title,
-      billing_address: billing.address_1,
-      email: billing.email,
+      billing_address: this.userInfo.address,
+      email: this.userInfo.email,
       name: this.userInfo.id || '',
       line_items: orderItems
     };

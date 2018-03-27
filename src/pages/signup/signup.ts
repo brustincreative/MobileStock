@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
-import { WooCommerceProvider } from '../../providers/woocommerce/woocommerce';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 @IonicPage()
@@ -9,191 +9,148 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-
-
   newUser: any = {};
-  billing_shipping_same: boolean;
-  WooCommerce: any;
-  editing: boolean;
   userInfo: any;
-  loading:any;
+  editing: boolean = false;
+  validForm: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public storage: Storage, public toastCtrl: ToastController, public alertCtrl: AlertController, private woocommerce: WooCommerceProvider) {
-
-    this.newUser.billing_address = {};
-    this.newUser.shipping_address = {};
-    this.billing_shipping_same = false;
-
-    this.WooCommerce = this.woocommerce.initialize();
-
-    this.loading = this.loadingCtrl.create({
-        content: 'Carregando dados...'
-      })
-    this.loading.present();
-
-    this.storage.ready().then(()=>{
-      this.storage.get("userLoginInfo").then((userLoginInfo) =>{
-        if(userLoginInfo != null){
-          this.userInfo = userLoginInfo.user;
-          //console.log(this.userInfo);
-          let email = userLoginInfo.user.email;
-          this.WooCommerce.getAsync("customers/email/"+email).then((data) =>{
-            this.newUser = JSON.parse(data.body).customer;
-          });
-          this.loading.dismiss();
-          this.editing = true;
-        }else{
-          this.loading.dismiss();
-          this.editing = false;
-        }
-      })});
-  }
-
-  ionViewDidLoad() {
-    //console.log('ionViewDidLoad Signup');
-  }
-
-  setBillingToShipping(){
-    this.billing_shipping_same = !this.billing_shipping_same;
+  constructor(public navCtrl: NavController, public storage: Storage, public http: Http, public navParams: NavParams, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+    let idUser = this.navParams.get("user");
+    if(idUser){
+      this.http.get('http://mobilestock-com-br.umbler.net/api/user.php?action=listaById&user=' + idUser).subscribe( (data) => {
+        let res = data.json();
+        this.newUser.name = res[0].nome;
+        this.newUser.email= res[0].email;
+        this.newUser.subscription= res[0].inscricao;
+        this.newUser.cpf_cnpj= res[0].cpf_cnpj;
+        this.newUser.username= res[0].username;
+        this.newUser.password= res[0].password;
+        this.newUser.telefone= res[0].telefone;
+        this.newUser.address= res[0].endereco;
+        this.newUser.city= res[0].bairro;
+        this.newUser.cep= res[0].CEP;
+        this.newUser.gender= res[0].sexo;
+        this.newUser.id= res[0].id;
+      });
+    } 
   }
 
   checkEmail(){
-
     let validEmail = false;
-
     let reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if(reg.test(this.newUser.email)){
       //email looks valid
+      this.http.get('http://mobilestock-com-br.umbler.net/api/user.php?action=verifyEmail&user=' + this.newUser.email).subscribe( (data) => {
+        let res = data.json();
 
-      this.WooCommerce.getAsync('customers/email/' + this.newUser.email).then( (data) => {
-        let res = (JSON.parse(data.body));
-
-        if(res.errors){
+        if(res.length == 0){
           validEmail = true;
+          this.validForm = true;
           this.toastCtrl.create({
             message: "Ótimo. Email válido.",
             duration: 3000
           }).present();
 
         } else {
-          if(this.editing == false)
+          if(!this.newUser.id)
           {
-              validEmail = false;
-              this.toastCtrl.create({
-                message: "Email já registrado. Favor verificar.",
-                showCloseButton: true
-              }).present();
-            }
+            validEmail = false;
+            this.validForm = false;
+            this.toastCtrl.create({
+              message: "Email já registrado. Favor verificar.",
+              showCloseButton: true
+            }).present();
+          }
         }
-        console.log(validEmail);
       })
-
-
-
     } else {
       validEmail = false;
+      this.validForm = false;
       this.toastCtrl.create({
         message: "Email inválido. Favor verificar.",
         showCloseButton: true
       }).present();
-      console.log(validEmail);
     }
-
   }
 
   signup(){
-
-      let customerData = {
-        customer : {}
-      }
-
-      customerData.customer = {
+      let customerData = {}
+      customerData = {
+        "name": this.newUser.name,
         "email": this.newUser.email,
-        "first_name": this.newUser.first_name,
-        "last_name": this.newUser.last_name,
+        "subscription":this.newUser.subscription,
+        "cpf_cnpj": this.newUser.cpf_cnpj,
         "username": this.newUser.username,
         "password": this.newUser.password,
-        "billing_address": {
-          "first_name": this.newUser.first_name,
-          "last_name": this.newUser.last_name,
-          "company": "",
-          "address_1": this.newUser.billing_address.address_1,
-          "address_2": this.newUser.billing_address.address_2,
-          "city": this.newUser.billing_address.city,
-          "state": this.newUser.billing_address.state,
-          "postcode": this.newUser.billing_address.postcode,
-          "country": this.newUser.billing_address.country,
-          "email": this.newUser.email,
-          "phone": this.newUser.billing_address.phone
-        },
-        "shipping_address": {
-          "first_name": this.newUser.first_name,
-          "last_name": this.newUser.last_name,
-          "company": "",
-          "address_1": this.newUser.shipping_address.address_1,
-          "address_2": this.newUser.shipping_address.address_2,
-          "city": this.newUser.shipping_address.city,
-          "state": this.newUser.shipping_address.state,
-          "postcode": this.newUser.shipping_address.postcode,
-          "country": this.newUser.shipping_address.country
-        }
+        "telefone": this.newUser.telefone,
+        "address": this.newUser.address,
+        "city": this.newUser.city,
+        "cep": this.newUser.cep,
+        "gender": this.newUser.gender,
+        "id": this.newUser.id,
       }
-
-      if(this.billing_shipping_same){
-        this.newUser.shipping_address = this.newUser.shipping_address;
-      }
-      if(!this.editing){
-        this.WooCommerce.postAsync('customers', customerData).then( (data) => {
-
-          let response = (JSON.parse(data.body));
-
-          if(response.customer){
-            this.alertCtrl.create({
-              title: "Conta criada",
-              message: "Sua conta foi criada com sucesso! Favor realizar login para seguir.",
-              buttons: [{
-                text: "Login",
-                handler: ()=> {
-                  //TODO
-                }
-              }]
-            }).present();
-          } else if(response.errors){
-            this.toastCtrl.create({
-              message: response.errors[0].message,
-              showCloseButton: true
-            }).present();
-          }
-
-        })
+      if(!this.validForm){
+        this.alertCtrl.create({
+          title: "Email Inválido",
+          message: "Seu email já existe em nosso banco de dados!",
+          buttons: [{
+            text: "Tentar novamente",
+            
+          }]
+        }).present();
+        return;
       }else{
-
-        this.WooCommerce.putAsync('customers/'+this.userInfo.id, customerData).then( (data) => {
-
-          let response = (JSON.parse(data.body));
-
-          if(response.customer){
-            this.alertCtrl.create({
-              title: "Conta atualizada",
-              message: "Sua conta foi atualizada com sucesso!",
-              buttons: [{
-                text: "OK",
-                handler: ()=> {
-                  //TODO
-                }
-              }]
-            }).present();
-          } else if(response.errors){
-            this.toastCtrl.create({
-              message: response.errors[0].message,
-              showCloseButton: true
-            }).present();
-          }
-
-        })
-      }
-
+        if(
+          this.newUser.name &&
+          this.newUser.email &&
+          this.newUser.cpf_cnpj &&
+          this.newUser.username &&
+          this.newUser.password &&
+          this.newUser.telefone &&
+          this.newUser.address  &&
+          this.newUser.city &&
+          this.newUser.cep  &&
+          this.newUser.gender
+        ){
+          this.http.post("http://mobilestock-com-br.umbler.net/api/user.php", customerData).subscribe((data) => {
+            let response = data.json();
+            if(response.lastInsertId){
+              if(this.newUser.id){
+                this.alertCtrl.create({
+                  title: "Conta alterada",
+                  message: "Sua conta foi alterada com sucesso!",
+                  buttons: [{
+                    text: "Ok",
+                    
+                  }]
+                }).present();
+              }else{
+                this.alertCtrl.create({
+                title: "Conta criada",
+                message: "Sua conta foi criada com sucesso! Favor realizar login para seguir.",
+                buttons: [{
+                  text: "Ok",
+                  handler: ()=> {
+                    this.navCtrl.setRoot('LoginPage');
+                  }
+                }]
+              }).present();
+              }
+              
+            }
+          }, err => { console.log(err) })
+        }else{
+          this.alertCtrl.create({
+            title: "Preenchimento correto",
+            message: "Todos os campos com o * devem ser preenchidos.",
+            buttons: [{
+              text: "Tentar novamente",
+              
+            }]
+          }).present();
+          return;
+        }
+      } 
     }
 
 }

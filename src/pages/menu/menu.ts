@@ -41,7 +41,7 @@ export class MenuPage {
     this.storage.ready().then(()=>{
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
-          this.user = userLoginInfo.user;
+          this.user = userLoginInfo.user[0];
           this.loggedin = true;
         }else{
           this.user = {};
@@ -57,7 +57,7 @@ export class MenuPage {
 
   openPage(pageName:string){
     if(pageName == "signup"){
-      this.navCtrl.push('SignupPage');
+      this.navCtrl.push('SignupPage', {"user": this.user.id});
     }else if(pageName == "login"){
       this.navCtrl.push('LoginPage');
     }else if(pageName == "cart"){

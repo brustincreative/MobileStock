@@ -43,7 +43,7 @@ export class ProductDetailsPage {
     this.storage.ready().then(()=>{
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
-          this.user = userLoginInfo.user;
+          this.user = userLoginInfo.user[0];
         }
       });
     });

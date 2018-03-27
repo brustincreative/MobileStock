@@ -34,24 +34,21 @@ export class LoginPage {
     });
   }
 
+  signUp(){
+    this.navCtrl.push('SignupPage');
+  }
+
   login(){
     this.loading = this.loadingCtrl.create({
       content: 'Conectando...'
     });
     this.loading.present();
     if(this.username != "" || this.password != ""){
-      this.http.get("http://mobilestock.com.br/api/auth/generate_auth_cookie?insecure=cool&username="+this.username+"&password="+this.password)
+      this.http.get("http://mobilestock-com-br.umbler.net/api/user.php?action=login&user="+this.username+"&pass="+this.password)
       .subscribe((res)=>{
         this.loading.dismiss();
         let response = res.json();
-        if(response.error){
-          this.toastCtrl.create({
-            message: response.error,
-            duration: 3000,
-          }).present();
-          return;
-        }
-
+        
         this.storage.set("userLoginInfo", response).then((data)=>{
           this.alertCtrl.create({
             title:"Conectado com sucesso",

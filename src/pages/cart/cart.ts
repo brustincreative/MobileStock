@@ -40,7 +40,8 @@ export class CartPage {
     this.storage.ready().then(()=>{
       this.storage.get("userLoginInfo").then((userLoginInfo) =>{
         if(userLoginInfo != null){
-          this.user = userLoginInfo.user;
+          this.user = userLoginInfo.user[0];
+
           this.http.get("http://mobilestock-com-br.umbler.net/api/cart.php?user="+this.user.id).subscribe((data)=>{
             this.cartItems = data.json();
             if(this.cartItems.length > 0){

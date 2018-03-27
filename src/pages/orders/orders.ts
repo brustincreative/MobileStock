@@ -26,7 +26,7 @@ export class OrdersPage {
     }).present();
 
     this.storage.get("userLoginInfo").then((data)=>{
-      this.customerId = data.user.id;
+      this.customerId = data.user[0].id;
     });
 
     this.WooCommerce.getAsync("orders?filter[customer]="+ this.customerId).then((data)=>{

@@ -42,39 +42,39 @@ var map = {
 		9
 	],
 	"../pages/menu/menu.module": [
-		586,
+		594,
 		8
 	],
 	"../pages/order-details/order-details.module": [
-		587,
+		586,
 		7
 	],
 	"../pages/orders/orders.module": [
-		588,
+		587,
 		6
 	],
 	"../pages/product-details/product-details.module": [
-		589,
+		588,
 		5
 	],
 	"../pages/products-by-category/products-by-category.module": [
-		590,
+		589,
 		4
 	],
 	"../pages/search/search.module": [
-		591,
+		590,
 		3
 	],
 	"../pages/signup/signup.module": [
-		592,
+		591,
 		2
 	],
 	"../pages/thank/thank.module": [
-		593,
+		592,
 		1
 	],
 	"../pages/tour/tour.module": [
-		594,
+		593,
 		0
 	]
 };
@@ -199,7 +199,6 @@ AppModule = __decorate([
                     { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/intro/intro.module#IntroPageModule', name: 'IntroPage', segment: 'intro', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/order-details/order-details.module#OrderDetailsPageModule', name: 'OrderDetailsPage', segment: 'order-details', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/product-details/product-details.module#ProductDetailsPageModule', name: 'ProductDetailsPage', segment: 'product-details', priority: 'low', defaultHistory: [] },
@@ -207,7 +206,8 @@ AppModule = __decorate([
                     { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/thank/thank.module#SearchPageModule', name: 'ThankPage', segment: 'thank', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/tour/tour.module#TourPageModule', name: 'TourPage', segment: 'tour', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/tour/tour.module#TourPageModule', name: 'TourPage', segment: 'tour', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] }
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
