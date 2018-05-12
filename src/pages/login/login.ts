@@ -48,25 +48,25 @@ export class LoginPage {
       .subscribe((res)=>{
         this.loading.dismiss();
         let response = res.json();
-        
-        this.storage.set("userLoginInfo", response).then((data)=>{
-          this.alertCtrl.create({
-            title:"Conectado com sucesso",
-            message:"Você foi conectado no sistema com sucesso.",
-            buttons:[{
-              text:"OK",
-              handler:()=> {
-                this.navCtrl.setRoot('MenuPage');
-              }
-            }]
+        if(response != "404"){
+          this.storage.set("userLoginInfo", response).then((data)=>{
+            this.alertCtrl.create({
+              title:"Conectado com sucesso",
+              message:"Você foi conectado no sistema com sucesso.",
+              buttons:[{
+                text:"OK",
+                handler:()=> {
+                  this.navCtrl.setRoot('MenuPage');
+                }
+              }]
+            }).present();
+          });
+        }else{
+          this.toastCtrl.create({
+            message: "Usuário não encontrado.",
+            duration: 3000,
           }).present();
-        });
-      }, (err)=>{
-        this.loading.dismiss();
-        this.toastCtrl.create({
-          message: err,
-          duration: 3000,
-        }).present();
+        } 
       });
     }else{
       this.loading.dismiss();
