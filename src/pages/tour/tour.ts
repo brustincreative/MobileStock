@@ -28,7 +28,6 @@ export class TourPage {
 
   slideChanged() {
     this.currentIndex = this.slides.getActiveIndex();
-    console.log('Current index is', this.currentIndex);
   }
 
   skipTour(){
