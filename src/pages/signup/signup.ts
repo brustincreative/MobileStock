@@ -29,7 +29,6 @@ export class SignupPage {
         this.newUser.address= res[0].endereco;
         this.newUser.city= res[0].bairro;
         this.newUser.cep= res[0].CEP;
-        this.newUser.gender= res[0].sexo;
         this.newUser.id= res[0].id;
       });
     } 
@@ -86,7 +85,7 @@ export class SignupPage {
         "address": this.newUser.address,
         "city": this.newUser.city,
         "cep": this.newUser.cep,
-        "gender": this.newUser.gender,
+        "gender": "0",
         "id": this.newUser.id,
       }
       if(!this.validForm){
@@ -109,8 +108,7 @@ export class SignupPage {
           this.newUser.telefone &&
           this.newUser.address  &&
           this.newUser.city &&
-          this.newUser.cep  &&
-          this.newUser.gender
+          this.newUser.cep
         ){
           this.http.post("http://mobilestock-com-br.umbler.net/api/user.php", customerData).subscribe((data) => {
             let response = data.json();

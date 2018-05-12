@@ -32,12 +32,6 @@
       <ion-input type="text" [(ngModel)]="newUser.cep" placeholder="CEP *" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-select [(ngModel)]="newUser.gender" placeholder="Sexo *"  >
-        <ion-option value="Masculino">Masculino</ion-option>
-        <ion-option value="Feminino">Feminino</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
       <ion-input type="email" [(ngModel)]="newUser.email" (ionBlur)="checkEmail()" placeholder="Email *" ></ion-input>
     </ion-item>
     <ion-item>
